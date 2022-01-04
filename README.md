@@ -1,6 +1,6 @@
-#Pygame game made in 1 display
+# Pygame game made in 1 display
 
-##Controls:
+## Controls:
 Q and mouse hovering over green base - shoot your Missile
 Mouse - move your Missile
 E - restart game when ended
