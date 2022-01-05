@@ -1,5 +1,6 @@
 import pygame
 import random
+import math
 
 pygame.init()
 screen = pygame.display.set_mode((500, 500))
@@ -15,7 +16,10 @@ base_red=pygame.transform.scale(base_red1,(50,50))
 base_green=pygame.transform.scale(base_green1,(50,50))
 rocket=pygame.transform.scale(rocket1,(50,50))
 rocket2 = pygame.transform.rotate(rocket, 180)
-bg = pygame.image.load("images/bg.png")
+bg1 = pygame.image.load("images/bg.png")
+bg = pygame.transform.scale(bg1,(500,500))
+explosion1=pygame.image.load('images/expolision.png').convert_alpha()
+explosion2=pygame.transform.scale(explosion1,(50,50))
 
 red=(255,0,0)
 black=(3,168,244)
@@ -24,6 +28,8 @@ blue=(0,0,255)
 collided=1
 a=0
 b=0
+global c
+c=0
 health=100
 health2=100
 times=0
@@ -33,10 +39,18 @@ nx=0
 ny=0
 x2=240
 y2=75
+ex=0
+ey=0
 running = True
 
 pygame.font.init()
 myfont = pygame.font.SysFont('Arial', 30)
+
+
+def explosion(ex,ey):
+    rect4=explosion2.get_rect()
+    rect4.center=(ex,ey)
+    screen.blit(explosion2, rect4)
 
 
 while running:
@@ -74,8 +88,11 @@ while running:
 
         if collided==0:
             rect=rocket.get_rect()
-            rect.topleft=(x-25,y-25)
-            screen.blit(rocket, rect)#rect=pygame.draw.rect(screen, blue, (x-10,y-10, 20, 20))
+            rect.center=(x,y)
+            direction = pygame.math.Vector2(w//2-25, 0) - rect.center
+            angle = direction.angle_to((0, -1))
+            image = pygame.transform.rotate(rocket, angle)
+            screen.blit(image, rect)#rect=pygame.draw.rect(screen, blue, (x-10,y-10, 20, 20))
 
         rect2=base_red.get_rect()
         rect2.topleft=(w//2-25,0)
@@ -97,18 +114,22 @@ while running:
             if health>0 and times==0:
                 health=health-10
                 times=1
+                explosion(rect2.x+25,rect2.y+25)
+
 
         if x2>=base.x and x2<=base.x+50 and y2>=base.y and y2<=base.y+50 and times2==0 and health2>0:
             health2=health2-10
             times2=0
             x2=240
             y2=75
+            explosion(base.x+25,base.y+25)
 
         if x>=missle.x and x<=missle.x+25 and y>=missle.y and y<=missle.y+10 and collided==0:
             collided=1
             times2=0
             x2=240
             y2=75
+            explosion(x,y)
 
     if health2==0 and health>health2:
         b=1
