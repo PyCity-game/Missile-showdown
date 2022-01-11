@@ -1,3 +1,5 @@
+#NOTE: the godot port was not done by me it was done by Erikson400 on github
+
 # Pygame game made in 1 day
 
 ## Controls:
