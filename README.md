@@ -1,4 +1,4 @@
-NOTE: the godot port was not done by me it was done by [Erikson400](https://github.com/Erickson400) 
+NOTE: the godot port was not done by me it was done by [Erikson400](https://github.com/Erickson400) after the original pygame game has been released
 
 # Pygame game made in 1 day
 
