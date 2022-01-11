@@ -1,0 +1,297 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://game/game.gd" type="Script" id=1]
+[ext_resource path="res://assets/bg.png" type="Texture" id=2]
+[ext_resource path="res://assets/base_green.png" type="Texture" id=3]
+[ext_resource path="res://assets/base_red.png" type="Texture" id=4]
+[ext_resource path="res://assets/FFFFORWA.TTF" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0470588, 0.427451, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.639216, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 5 )
+
+[sub_resource type="Curve2D" id=5]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 248, 48, 0, -225.615, 0, 225.615, 453, 340, 0, 0, 0, 0, 242, 638 )
+}
+
+[sub_resource type="Curve2D" id=6]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 248, 48, 0, -225.615, 0, 225.615, 49, 347, 0, 0, 0, 0, 242, 638 )
+}
+
+[sub_resource type="Curve2D" id=7]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 247, 51, -16.6677, -31.748, 16.6677, 31.748, 176, 179, -26.9858, -54.7653, 26.9858, 54.7653, 310, 198, -7.937, -76.9889, 7.937, 76.9889, 107, 308, -3.9685, -55.559, 3.9685, 55.559, 426, 322, 1.5874, -59.5275, -1.5874, 59.5275, 146, 426, -5.5559, -50.0031, 5.5559, 50.0031, 373, 470, 26.9858, -43.6535, -26.9858, 43.6535, 207, 554, 0, 0, 0, 0, 246, 637 )
+}
+
+[sub_resource type="Curve2D" id=8]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 244, 51, -91.2168, -43.1335, 91.2168, 43.1335, 238, 353, -0.707107, 65.7609, 0.707107, -65.7609, 355, 282, 64.3467, -19.799, -64.3467, 19.799, 244, 216, 27.5772, -60.1041, -27.5772, 60.1041, 138, 301, -19.0919, -58.6899, 19.0919, 58.6899, 322, 484, 0, 0, 0, 0, 245, 638 )
+}
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 55, 55 )
+
+[sub_resource type="DynamicFont" id=10]
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -10.7 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "tilt"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -10.0, 0.0, 10.0, 0.0 ]
+}
+
+[node name="Game" type="Node"]
+script = ExtResource( 1 )
+
+[node name="RocketSpawnRate" type="Timer" parent="."]
+autostart = true
+
+[node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BackgroundTop" type="Sprite" parent="."]
+scale = Vector2( 10, 10 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 50, 25 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BackgroundMiddle" type="Sprite" parent="."]
+position = Vector2( 0, 250 )
+scale = Vector2( 10, 40.4 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 25, 50, 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BackgroundBottom" type="Sprite" parent="."]
+position = Vector2( 0, 452 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 25, 50, 25 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="GreenBase" type="Sprite" parent="."]
+position = Vector2( 250, 640 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RedBase" type="Sprite" parent="."]
+position = Vector2( 250, 56 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="GreenHealth" type="ProgressBar" parent="."]
+margin_left = 307.0
+margin_top = 625.0
+margin_right = 487.0
+margin_bottom = 668.0
+custom_fonts/font = SubResource( 3 )
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 100.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RedHealth" type="ProgressBar" parent="."]
+margin_left = 15.0
+margin_top = 36.0
+margin_right = 195.0
+margin_bottom = 79.0
+custom_fonts/font = SubResource( 4 )
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 100.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RedMissilePaths" type="Node" parent="."]
+
+[node name="Path1" type="Path2D" parent="RedMissilePaths"]
+curve = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Path2" type="Path2D" parent="RedMissilePaths"]
+curve = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Path3" type="Path2D" parent="RedMissilePaths"]
+curve = SubResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Path4" type="Path2D" parent="RedMissilePaths"]
+curve = SubResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RedArea" type="Area2D" parent="." groups=["enemy_base"]]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RedArea"]
+position = Vector2( 250, 62 )
+shape = SubResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="GreenArea" type="Area2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreenArea"]
+position = Vector2( 248, 635 )
+shape = SubResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RocketSpawnButton" type="Button" parent="GreenArea"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 213.0
+margin_top = 603.0
+margin_right = 289.0
+margin_bottom = 678.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VictoryMenu" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+rect_rotation = -10.7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="won" type="Label" parent="VictoryMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -65.0
+margin_top = -78.0
+margin_right = 43.0
+margin_bottom = -31.0
+custom_fonts/font = SubResource( 10 )
+text = "Green Won
+"
+
+[node name="Press" type="Label" parent="VictoryMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -127.0
+margin_top = -28.0
+margin_right = 111.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 10 )
+text = "Press Space to restart
+
+"
+
+[node name="Button" type="Button" parent="VictoryMenu"]
+modulate = Color( 0, 0, 0, 0 )
+margin_left = -232.0
+margin_top = -338.0
+margin_right = 299.0
+margin_bottom = 405.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VictoryMenu"]
+autoplay = "tilt"
+anims/RESET = SubResource( 11 )
+anims/tilt = SubResource( 12 )
+
+[connection signal="timeout" from="RocketSpawnRate" to="." method="_on_RocketSpawnRate_timeout"]
+[connection signal="area_entered" from="RedArea" to="." method="_on_RedArea_area_entered"]
+[connection signal="pressed" from="GreenArea/RocketSpawnButton" to="." method="_on_RocketSpawnButton_pressed"]
